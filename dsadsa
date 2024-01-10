@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Taczka {
+    int minuta;
+    int numer;
+    char rodzaj[20];
+    int ilosc;
+};
+
+int main() {
+    FILE *fp;
+    char filename[] = "Dane 1.txt";
+    char line[100];
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        printf("Nie udało się otworzyć pliku %s", filename);
+        exit(1);
+    }
+    struct Taczka t;
+    while (fscanf(fp, "%d %d %s %d", &t.minuta, &t.numer, t.rodzaj, &t.ilosc) == 4) {
+        printf("%d %d %s %d\n", t.minuta, t.numer, t.rodzaj, t.ilosc);
+    }
+    fclose(fp);
+    return 0;
+}
